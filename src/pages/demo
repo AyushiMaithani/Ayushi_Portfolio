@@ -1,0 +1,48 @@
+const handleScroll = () => {
+    setScrollPosition(window.scrollY);
+    
+    // Update active section based on scroll position
+    const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          setActiveSection(section);
+          console.log(activeSection);
+
+
+          if(activeSection==='home' || activeSection==='about') 
+            setStyle('bg-zinc-200');
+          else
+            setStyle('bg-zinc-800');
+          
+          break;
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+
+      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section);
+
+            // Change the navbar style based on the section
+            if (section === 'home' || section === 'about') {
+              setStyle('bg-zinc-200'); // light background for home and about
+            } else {
+              setStyle('bg-zinc-800'); // dark background for others
+            }
+            break;
+          }
+        }
+      }
+    };
