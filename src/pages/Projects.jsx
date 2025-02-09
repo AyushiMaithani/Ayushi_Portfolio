@@ -11,7 +11,14 @@ import { FaArrowTurnDown } from "react-icons/fa6";
 
 function Projects() {
     const data = [
-     
+        {
+            name: "Portfolio Website",
+            desc: "My portfolio showcases my skills, projects, and passion as a developer, offering a glimpse into my work and expertise.",
+            liveLink:"https://ayushi-portfolio-sable.vercel.app",
+            sourceCode:"https://github.com/AyushiMaithani/Ayushi_Portfolio",
+            live: true,
+            video: vid1
+        },
         {
             name: "SnapBox",
             desc: " SnapBox is a photo-sharing web app that lets users upload, organize, and manage their photos securely. It ensures safe access to personal galleries.",
@@ -87,7 +94,7 @@ function Projects() {
                                 {data.map((item, index) => (
                                     <motion.div key={index} animate={{ y: -pos + 'px' }} className='w-[30rem] h-[319px]'>
                                         <video  
-                                        className='absolute object-cover w-full h-full rounded-3xl cursor-pointer'
+                                        className='absolute border object-cover w-full h-full rounded-3xl cursor-pointer'
                                          src={item.video} 
                                          autoPlay 
                                          loop 
