@@ -1,16 +1,24 @@
 import { useState } from "react";
 import { Mail, Phone, Building2, MapPin, Instagram, Github, Linkedin } from 'lucide-react';
 import { FaArrowTurnDown } from "react-icons/fa6";
+import { X } from 'lucide-react';
 
 function Contact() {
   const [result, setResult] = useState("");
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
   const onSubmit = async (event) => {
+    setFormData({
+      name: '',
+      email: '',
+      message: ''
+    });
+    setShowSuccessDialog(true);
     event.preventDefault();
     setResult("Sending....");
     const formData = new FormData(event.target);
 
-    formData.append("access_key", "5f7318c1-3c9d-4abc-9ad5-d3259cfa9940");
+    formData.append("access_key",import.meta.env.VITE_API_KEY );
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -21,7 +29,6 @@ function Contact() {
 
     if (data.success) {
       setResult("Form Submitted Successfully");
-      event.target.reset();
     } else {
       console.log("Error", data);
       setResult(data.message);
@@ -31,8 +38,7 @@ function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    organization: '',
-    services: ''
+    message: '',
   });
 
   const handleInputChange = (e) => {
@@ -42,12 +48,30 @@ function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-  };
-
   return (
+  <>
+    {showSuccessDialog && (
+      <div className="fixed font-mono inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative">
+          <button onClick={() => setShowSuccessDialog(false)} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+            <X size={24} />
+          </button>
+          <div className="text-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+            <p className="text-gray-600 mb-6">Thank you for reaching out. I'll get back to you soon!</p>
+            <button onClick={() => setShowSuccessDialog(false)} className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 font-mono">
+              Okay
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+    
 
     
     <div className="p-10 text-zinc-100 bg-[#141516] text-6xl font-mono">
@@ -93,8 +117,8 @@ function Contact() {
             <div className="text-zinc-500 mb-1">03</div>
             <label className="text-2xl font-light block mb-4">Your Message</label>
             <textarea
-              name="services"
-              value={formData.services}
+              name="message"
+              value={formData.message}
               onChange={handleInputChange}
               className="w-full bg-transparent border-b border-zinc-700 py-2 text-xl focus:outline-none focus:border-white transition-colors"
               placeholder="Message*"
@@ -146,6 +170,7 @@ function Contact() {
       </div>
     </div>
   </div>
+  </>
   )
 }
 

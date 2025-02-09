@@ -8,7 +8,7 @@ function About() {
         borderTopRightRadius: '50px',
       }}  
       id='about' 
-      className="bg-gray-100 text-gray-800 flex py-10  md:py-20 flex-col font-mono"
+      className="bg-gray-100 text-gray-800 flex py-10  md:py-20 flex-col font-mono mt-[-250px] lg:mt-[0px] "
     >
       <div className="max-w-6xl mx-auto px-4 py-8 md:py-16">
         <h2 className="text-3xl md:text-5xl lg:text-6xl py-6 md:py-10 flex items-center">

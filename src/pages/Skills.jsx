@@ -22,9 +22,9 @@ function Skills() {
       
       
   return (
-    <div className="p-10 bg-[#141516] text-zinc-100 text-6xl font-mono">
+    <div className="p-10 bg-[#141516] text-zinc-100 font-mono">
     <div  className="max-w-6xl mx-auto ">
-    <h2 className="mx-auto text-6xl font-mono py-10  flex items-center">
+    <h2 className="mx-auto text-4xl font-mono py-10  flex items-center">
           <FaArrowTurnDown className="mr-2 mt-6" /> Skills
     </h2>
       <h2 className="text-xl mb-16">Essential Tools I use</h2>
